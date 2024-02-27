@@ -1,0 +1,82 @@
+---
+title: "Wzory"
+author: "Krzysztof Pleskot"
+date: "2024-02-26"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+## Równanie dwumianowe
+
+\[
+P(r; n, p) = \binom{n}{r}p^r(1-p)^{n-r}
+\]
+
+\(P(r; n, p)\) - Prawdopodobieństwo wystąpienia \(r\) razy jakiegos zjawiska przy \(n\) probach, w momencie kiedy ogolne prawdopodobienstwo wystapienia tego zjawiska wynosi \(p\)
+
+\(\binom{n}{r}\) - współczynnik dwumianowy zdefiniowany jako:
+
+\[
+\binom{n}{r} = \frac{n!}{r!(n-r)!}
+\]
+gdzie, \(n\) oznacza liczbę prób, a \(r\) liczbę wystąpienia sukcesu
+
+## Silnia
+
+\[
+n! = 1 \cdot 2 \cdot 3 \cdot \ldots \cdot (n-1) \cdot n
+\]
+
+## Kolejne kroki dochodzenia do wzoru dla równania dwumianowego
+
+Prawdopodobieństwo sukcesu wynosi \(p\). Jest znane albo je zakładamy
+
+## Kolejne kroki dochodzenia do wzoru dla równania dwumianowego
+
+Prawdopodobieństow porażki równe jest dlatego \(1-p\)
+
+## Kolejne kroki dochodzenia do wzoru dla równania dwumianowego
+
+Prawdopodobieństwo, że \(n\) kolejnych prób będzie porażką wynosi \(P = (1 - p)^n\)
+
+## Kolejne kroki dochodzenia do wzoru dla równania dwumianowego
+
+Prawdopodobieństwo, że \(n\)ta próba będzie sukcesem, a wszystkie wczesniejsze porażką wynosi \(P = (1-p)^{n-1}p\)
+
+## Kolejne kroki dochodzenia do wzoru dla równania dwumianowego
+
+Jeśli sukces ma być jeden, ale nie ma znaczenia przy którym zdarzeniu wystąpi, to prawdopodobieństwo musi uwzględnić liczebność próby, dlatego  \(P = n(1-p)^{n-1}p\)
+
+## Kolejne kroki dochodzenia do wzoru dla równania dwumianowego
+
+Z poprzednich rownan mozemy wywnioskować, że \(P=(1-p)^{n-r}p^r\)
+
+## Kolejne kroki dochodzenia do wzoru dla równania dwumianowego
+
+Jeśli wezmiemy poprzednie rownanie i przyjmiemy, że porażki i zwycięstwa mogą występować w dowolnej konfiguracji, to równanie \(P=(1-p)^{n-r}p^r\) będziemy musieli przemnożyć przez współczynnik dwumianowy \(\binom{n}{r}\), bo określa on liczbę wszystkich możliwych kombinacji w których będziemy mieli \(r\) sukcesów przy \(n\) próbach 
+
+W efekcie otrzymujemy docelowe równanie:
+
+\[
+P(r; n, p) = \binom{n}{r}p^r(1-p)^{n-r}
+\]
+
+## Percentyl
+
+\[
+\text{percentile of } x_i=100(\frac{\text{rank of } x_i}{n})
+\]
+
+Istnieje wiele różnych podejść do obliczania percentyli w sytuacji, w której rangi się powtarzają
+
+## Średnia arytmetyczna
+
+\[
+\bar{x} = \frac{1}{n} \sum_{i=1}^{n} x_i
+\]
+
+gdzie \(\bar{x}\) to symbol 

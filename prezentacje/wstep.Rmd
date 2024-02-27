@@ -1,0 +1,54 @@
+---
+title: "Prezezentacja wstęp"
+author: "Krzysztof Pleskot"
+date: "2024-02-26"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+##
+
+- Dyżur: wtorek 11:30-13:00
+- Pokój 170
+- e-mail: krzypl@amu.edu.pl
+
+## Organizacja zajęć
+
+- zajęcia trwają do 3 kwietnia 
+- wykład i laboratorja odbywają się równolegle
+- zaliczenie części laboratorjnej: zdanie kompletu wykonanych zadań do dnia 10 kwietnia
+- zaliczenie części wykładowej: rozmowa w oparciu o wykonane zadania; temin: 17 kwietnia
+
+## Literatura
+
+- Wszystkie materiały potrzebne do zajęć będę znajdować się na stronie: <https://github.com/krzypl/metody_statystyczne>
+- Polecam podręcznik: Davis, J.C. 2002: Statistics and Data Analysis in Geology. John Wiely & Sons
+
+## Statystyka
+
+Statystyka (niem. Statistik, „badanie faktów i osób publicznych”, z łac. statisticus, „polityczny, dot. polityki”, od status, „państwo, stan”) – nauka, której przedmiotem zainteresowania są metody pozyskiwania i prezentacji, a przede wszystkim analizy danych opisujących zjawiska, w tym masowe (za wikipedia.org)
+
+
+## Statystyka w geologii
+
+- Na zajęciach skupiamy się przede wszystkim na analizie statystycznej danych geologicznych
+- Wiele analiz statystycznych przeprowadzanych w zakresie geologii nosi znamiona quasi statystyki
+
+##
+
+- "...when you can measure what you are speaking about and express it in numbers, you know something about it; but when you cannto express it in numbers, your knowlage is of a meagre and unsatisfactory kind; it ma be the beginning of knowlage..." - Lord Kelvin
+
+Ale:
+
+- Zasada GIGO - Garbage In, Garbage Out
+
+## Środowisko pracy
+
+R i RStudio z wielu względów
+
+Pomocne materiały: 
+- R for Data Science: <https://r4ds.hadley.nz/>
+- Elementarz programisty: <https://jakubnowosad.com/elp/>
