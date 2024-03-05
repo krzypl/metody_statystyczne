@@ -82,7 +82,6 @@ density_values <- tibble(val = dnorm(x, mean=0, sd=1), n = 1:length(x))
 
 ggplot(density_values, aes(x = n, y = val)) +
   geom_line() +
-  geom_vline(xintercept = mean(density_values$n), color = "green") +
   labs(x = NULL, y = "Probability") +
   theme(axis.text.x = element_blank(), axis.ticks.x = element_blank())
 
@@ -94,37 +93,75 @@ quantile(pstat) #percentyl jest wielkością procentowa, poniżej której padaj�
 pstat_cum <- tibble(val = pstat)
 
 ggplot(pstat_cum, aes(x = val)) +
-  geom_histogram(aes(x = val, after_stat(density))) +
   stat_ecdf() +
   stat_ecdf(geom = "point") +
-  labs(title = "Wykres kumulacyjny dla pstat z nałożonym histogramem",
+  labs(title = "Wykres kumulacyjny dla pstat",
        x = "Wartość", y = "Prawdopodobieństwo kumulacyjne") +
-  theme_minimal()
+  theme_minimal() +
+  coord_equal(ratio = 20)
 
 #Zadanie: korzystająć z wzoru oblicz manualnie wartość percentyla dla obserwacji o randze 1. Następnie oblicz, jaką rangę ma obserwacja dla 75 percentyla. 
 
-#podstawowe statystyki opisowe
-#srednia
-sum(pstat)/length(pstat)#srednia to suma wszystkich obserwacji podzielona przez ich liczbe
-mean(pstat) #funkcja sluzaca do wyliczania sredniej
-
-
-#wartosc minimalna i maksymalna
-min(pstat)
-max(pstat)
-
-#kwantyle, percentyle i kwartyle
-quantile(pstat) #percentyl jest wielkością procentowa, poniżej której padają wartości zadanego procentu próbek. Wyrazone w zapisie dziesietnym percentyle, to inaczej kwantyle (np. percentyl 25 to inaczej kwantyl 0.25). Percentyl 25, 50 i 75 to tzw. kwartyle, kolejno pierwszy, drugi (mediana) i trzeci. -> wieświetl ciag pstat.sort i znajdz liczby w szeregu wskazane przez kolejne percentyle
-
-#podsumowanie powyzszych statystyk uzyskujemy dzieki funkcji summary()
 summary(pstat)
 
-#wglad w statystyki opisowe w oparciu o przedstawienia graficzneg
+#wkresy pudełgkowe - boxploty
+#gruba kreska w srodku to mediana, granice ramki pudelka wyznaczaja kolejno pierwszy i trzeci kwartyl, a ekstrema oblicza sie wg wzoru kwartyl1 - 1.5*rozstep kwartylny (ekstremum dolne) i kwartyl3 + 1.5*rozstep kwartylny (ekstremum gorne)
 
-#wykresy pudelkowe
-boxplot(pstat) #gruba kreska w srodku to mediana, granice ramki pudelka wyznaczaja kolejno pierwszy i trzeci kwartyl, a ekstrema oblicza sie wg wzoru kwartyl1 - 1.5*rozstep kwartylny (ekstremum dolne) i kwartyl3 + 1.5*rozstep kwartylny (ekstremum gorne)
+ggplot(pstat_cum, aes(y = val)) +
+  geom_boxplot()
 
-#wykresy kumulacyjne
-plot(ecdf(pstat), verticals = TRUE, do.points = FALSE)
-abline(h = c(0.25, 0.5, 0.75))
-hist(pstat, breaks = 20, probability = TRUE, right = FALSE)
+ggplot(tibble(val = rnorm(1000, 5, 2)), aes(y = val)) +
+  geom_boxplot()
+
+
+#srednia
+mean(pstat) #funkcja sluzaca do wyliczania sredniej
+
+#odchylenie standardowe i wariancja
+var(pstat)
+sd(pstat)
+sqrt(var(pstat))
+
+#przykładowe dane geochemiczne z replikowanych pomiarow dla 3 pierwiastkow. Dane w postaci ramki danych:
+
+geochem <- tibble(Cr = c(205, 255, 195, 220, 235),
+                  Ni = c(130, 165, 100, 135, 145),
+                  V = c(180, 215, 135, 200, 205))
+
+#Korzystając z R oblicz "na piechotę" (tj. bez korzystania z funkcji var i sd) wariancję i odchlenie standardowe dla swojego Cr i Ni z obiektu geochem. Sprawdź wynik wykorzystując funkcje dedykowane do obliczania tych parametrów
+
+normal_density <- function(x) {
+  dnorm(x, mean = 0, sd = 1)
+}
+
+#wykres dla rozk;adu normalnego z zaznaczonymi kolejnymi wartościami dla odchlenia standardowego
+ggplot(data.frame(x = c(-3, 3)), aes(x)) +
+  stat_function(fun = normal_density, geom = "area", fill = "lightblue", alpha = 0.5, xlim = c(-3, 3)) +
+  stat_function(fun = normal_density, geom = "line", size = 1) +
+  geom_vline(xintercept = c(-1, 1), linetype = "dashed", color = "red", size = 1.2) +
+  geom_vline(xintercept = c(-2, 2), linetype = "dashed", color = "orange", size = 1.2) +
+  geom_vline(xintercept = c(-3, 3), linetype = "dashed", color = "darkgreen", size = 1.2) +
+  geom_vline(xintercept = 0) +
+  labs(title = "Rozkład normalny z zaznaczonymi zakresami 1 i 2 sigma",
+       x = "X-axis",
+       y = "Density") +
+  theme_minimal() #w przedziale 1sigma, tj. w zakresie od wartosci sredniej pomniejszona o wartosc odchylenia standardowego do wartosci sredniej powiekszonej o wartosc odchylenia standardowego znajduje sie ok. 68% obserwacji; #w przedziale 2sigma, tj. w zakresie od wartosci sredniej pomniejszona o dwukrotnosc wartosci odchylenia standardowego do wartosci sredniej powiekszonej o dwukrotnosc wartosci odchylenia standardowego znajduje sie ok. 95% obserwacji
+
+#kowariancja i korelacja - miary zależności liniowej między dwoma zmiennymi
+
+#Zadanie: korzystając ze wzorów oblicz kowariancję i korelację dla zmiennych Cr i Ni z obiektu geochem
+
+correl <- as_tibble(read.delim("dane/CORREL.txt")) # tabela pokazująca różny stopień korelacji pomiędzy sztucznie wegenerowanymi zmiennymi
+
+#
+composita <- tibble(dl = c(18.4, 16.9, 13.6, 11.4, 7.8, 6.3),
+                    szer = c(15.4, 15.1, 10.9, 9.7, 7.4, 5.3))
+
+ggplot(correl, aes(x = X1, y = X2)) +
+  geom_point()
+
+#korzystając z kodu powyżej utwórz wykres pokazujący relację pomiędzy 4 wybranymi zmiennymi. Oblicz dla wszystkich sytuacji współczynnik korelacji
+
+#Uwaga ogolna - obliczanie korelacji z danych kompozycyjnych wymaga szczególnego podejścia
+
+#centralne twierdzenie graniczne

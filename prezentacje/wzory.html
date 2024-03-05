@@ -3203,13 +3203,44 @@ P(r; n, p) = \binom{n}{r}p^r(1-p)^{n-r}
 
 <p>Istnieje wiele różnych podejść do obliczania percentyli w sytuacji, w której rangi się powtarzają</p>
 
+</article></slide><slide class=""><hgroup><h2>Symbole we wzorach</h2></hgroup><article  id="symbole-we-wzorach">
+
+<p>Dla populacji najczęściej litery greckie, a dla próby litery rzymskie</p>
+
 </article></slide><slide class=""><hgroup><h2>Średnia arytmetyczna</h2></hgroup><article  id="średnia-arytmetyczna">
 
 <p>\[
-\bar{x} = \frac{1}{n} \sum_{i=1}^{n} x_i
+\bar{X} = \frac{\sum_{i=1}^{n} x_i}{n}
 \]</p>
 
-<p>gdzie \(\bar{x}\) to symbol</p></article></slide>
+</article></slide><slide class=""><hgroup><h2>Odchylenie standardowe i wariancja</h2></hgroup><article  id="odchylenie-standardowe-i-wariancja">
+
+<ul>
+<li><p>Odchylenie standardowe: \(\sigma = \sqrt{\frac{\sum_{i=1}^{n}(x_i - \mu)^2}{n}}\)</p></li>
+<li><p>Wariancja: \(\sigma^2 = \frac{\sum_{i=1}^{n}(x_i - \mu)^2}{n}\)</p></li>
+</ul>
+
+<p>(wzory dla próby statystycznej zamiast \(n\) mają \(n-1\))</p>
+
+<p>Po co kwadrat we wzorach?</p>
+
+<ul>
+<li>suma kwadratów: \(SS = \sum_{i=1}^{n}(x_i - \mu)^2\)</li>
+</ul>
+
+</article></slide><slide class=""><hgroup><h2>Kowariancja i korelacja</h2></hgroup><article  id="kowariancja-i-korelacja">
+
+<p>Kowariancja</p>
+
+<p>\(cov_{jk} = \frac{SP_{jk}}{n -1}\)</p>
+
+<p>gdzie</p>
+
+<p>\(SP_{jk} = \sum_{i=1}^{n}(x_ij-\bar{X_j})(x_ik-\bar{X_k})\)</p>
+
+<p>Korelacja</p>
+
+<p>\(r_{jk} = \frac{cov_{jk}}{s_{j}s_{k}}\)</p></article></slide>
 
 
   <slide class="backdrop"></slide>
