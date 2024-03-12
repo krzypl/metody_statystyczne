@@ -130,6 +130,29 @@ geochem <- tibble(Cr = c(205, 255, 195, 220, 235),
 
 #Korzystając z R oblicz "na piechotę" (tj. bez korzystania z funkcji var i sd) wariancję i odchlenie standardowe dla swojego Cr i Ni z obiektu geochem. Sprawdź wynik wykorzystując funkcje dedykowane do obliczania tych parametrów
 
+
+#skośność - rozkłady symetryczne, dodatnioskośne i ujemnoskośne
+library(moments)
+
+hist(geochem$Cr)
+abline(v = mean(geochem$Cr), col = "red")
+abline(v = median(geochem$Cr), col = "green")
+
+skewness(geochem$Cr)
+
+hist(geochem$V)
+abline(v = mean(geochem$V), col = "red")
+abline(v = median(geochem$V), col = "green")
+
+skewness(geochem$V)
+
+#Zadanie oblicz "na piechotę" skośność dla Ni z obiektu geochem. Wynik sprawdź korzystając z funkcji skewness(). Jak sklasyfikujesz badany rozkład pod względem skośności (tj. jaki to typ skośności)?
+
+#kurtoza - rozkłady mezokurtyczne, leptokurtyczne i platykurtyczne
+
+#zadanie - oblicz "na piechotę kurtozę dla Cr z obiektu geochem. Wynik sprawdź korzystając z funkcji kurtosis(). Jak sklasyfikujesz badany rozkład pod względem kurtozy (tj. jaki to typ kurtozy)?
+
+
 normal_density <- function(x) {
   dnorm(x, mean = 0, sd = 1)
 }
@@ -147,21 +170,59 @@ ggplot(data.frame(x = c(-3, 3)), aes(x)) +
        y = "Density") +
   theme_minimal() #w przedziale 1sigma, tj. w zakresie od wartosci sredniej pomniejszona o wartosc odchylenia standardowego do wartosci sredniej powiekszonej o wartosc odchylenia standardowego znajduje sie ok. 68% obserwacji; #w przedziale 2sigma, tj. w zakresie od wartosci sredniej pomniejszona o dwukrotnosc wartosci odchylenia standardowego do wartosci sredniej powiekszonej o dwukrotnosc wartosci odchylenia standardowego znajduje sie ok. 95% obserwacji
 
-#kowariancja i korelacja - miary zależności liniowej między dwoma zmiennymi
+#centralne twierdzenie graniczne. Założenia:
+# próbkowanie jest losowe
+# próby muszą być niezależne od siebie
+# populacja musi miec skonczoną wariancję
+# 
+# im wieksza licza obserwacji w probach, tym lepiej. Przyjmuje sie, ze kazda proba powinna miec przynajmniej 30 obserwacji. Zdarza się, ze to wcale nie starcza
 
-#Zadanie: korzystając ze wzorów oblicz kowariancję i korelację dla zmiennych Cr i Ni z obiektu geochem
+#Dzieki centralnemu twierdzeniu granicznemu możem przeprowadzać testy statystyczne dla populacji, ktore wcale nie maja rozkladu normalnego
 
-correl <- as_tibble(read.delim("dane/CORREL.txt")) # tabela pokazująca różny stopień korelacji pomiędzy sztucznie wegenerowanymi zmiennymi
-
-#
 composita <- tibble(dl = c(18.4, 16.9, 13.6, 11.4, 7.8, 6.3),
                     szer = c(15.4, 15.1, 10.9, 9.7, 7.4, 5.3))
 
-ggplot(correl, aes(x = X1, y = X2)) +
-  geom_point()
+#załóżmy, że znamy dokładnie własności populacji Composita, że średnia długość wynosi 14.2 mm a odchylenie standardowe 4.7 mm. Znalezlismy próbkę ze skamieniałościami ramienionogów, które wygladają jak Composita, ale są wyjatkowo duże - sredio maja po 20 mm. Czy moga one pochodzic ze znanej populacji Composita
 
-#korzystając z kodu powyżej utwórz wykres pokazujący relację pomiędzy 4 wybranymi zmiennymi. Oblicz dla wszystkich sytuacji współczynnik korelacji
+#wykorzystanie statystyki z posiadajaca rozklad normalny, srednią zero i odchylenie standardowe 1. 
+#hipoteza zerowa (H0) zaklada, ze porownywane srednie nie roznia się.
 
-#Uwaga ogolna - obliczanie korelacji z danych kompozycyjnych wymaga szczególnego podejścia
+#ddwa rodzaje błedów:
+# 1. bład I rodzaju (alfa) - odrzucenie właściwej hipotezy
+# 2. Błąd II rodzaju (beta) - przyjęcie niewłaściwej hipoterzy
+#prawdopodobieństwo popelnienia bledu I rodzaju w statystyce nazywa sie "poziomem istotności", ktory dla kazdego testu musi być ustalony
+#odrzucamy hipoteze, jesli wartosc bedzie za duza albo za mala (two-tailed test), tj. jesli znajdziemy sie w zasiegu tzw. critical region
 
-#centralne twierdzenie graniczne
+#Zadanie: korzystajac z wzoru oblicz statystyke z dla podanych powyżej danych
+
+
+#wykorzystując obliczoną wartość z możemy określić czy znajduje sie ona w critical region czy nie
+
+alpha <- .05 
+z.half.alpha <- qnorm(1-alpha/2) 
+c(-z.half.alpha, z.half.alpha) 
+
+
+
+#mozemy tez obliczyc wartosc p, tj. minimalna wartosc przy ktorej hipoteza zerowa bylaby odrzucona
+
+2*(1 - pnorm(z, mean = 0, sd = 1)) # mnozym przez dwa poniewaz pnorm() liczy nam p tylko dla jednej strony rozkladu, a my przeprowadzamy two-tailed test
+
+#funkcja R do przeprowadzenia z-testu
+install.packages("BSDA")
+library(BSDA)
+
+z.test(x = c(19, 20, 21, 18, 22, 20), alternative = "two.sided", mu = 14.2, sigma.x = 4.7)
+
+#z-test wykonuje się, kiedy parametry populacji są znane. Często tak nie jest dlatego opracowuje się alternatywne testy
+
+#w takich przypadkach obliczamy parametry populacji w oparciu o probe statstyczna, co zawsze prowadzi do podawania nie dokladnych wartosci, a przedzialow
+
+#zadanie: korzystajac z wzoru oblicz srednia dlugosc populacji Composita w przedziale ufnosci 90% w oparciu o dane z proby statystycznej. Dla obliczenia wartosci z skorzystaj z poniższego wzoru:
+qnorm(x, mean = 0, sd = 1) #pod x podstaw odpowiednie wartosci prawdopodobienstwa
+
+#wynik sprawdx w oparciu o wykorzystanie funkcji z.test z poniższymi parametrami
+test <- z.test(composita$dl, alternative = "two.sided", sigma.x = 4.7,  conf.level = 0.9)
+ci <- tibble(lower = test$conf.int[[1]], upper = test$conf.int[[2]])
+
+

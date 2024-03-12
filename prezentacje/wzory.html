@@ -3228,6 +3228,32 @@ P(r; n, p) = \binom{n}{r}p^r(1-p)^{n-r}
 <li>suma kwadratów: \(SS = \sum_{i=1}^{n}(x_i - \mu)^2\)</li>
 </ul>
 
+</article></slide><slide class=""><hgroup><h2>Skośność i kurtoza</h2></hgroup><article  id="skośność-i-kurtoza">
+
+<p>Skośność: \[ \gamma = \frac{\mu_3}{\sigma^3} \]</p>
+
+<p>\[ \gamma = \frac{\frac{\sum_{i=1}^{n}(x_i - \bar{x})^3}{n}}{\left(\frac{\sum_{i=1}^{n}(x_i - \bar{x})^2}{n}\right)^{3/2}} \]</p>
+
+<p>\(\mu_3\) - trzeci moment centralny<br/>\(\sigma\) - odchylenie standardowe</p>
+
+<p>Kurtoza: \[ \kappa = \frac{\mu_4}{\sigma^4} \]</p>
+
+</article></slide><slide class=""><hgroup><h2>Cetralne twierdzenie graniczne</h2></hgroup><article  id="cetralne-twierdzenie-graniczne">
+
+<p>\(\bar{X}_{\bar{X}} = \mu)\)</p>
+
+<p>Czyli, ze średnia ze średnich w próbach jest równa średniej populacji</p>
+
+<p>\(s^2_{\bar{X}} = \frac{\sigma^2}n)\)</p>
+
+<p>Błąd standardowy: \(s_e = \sqrt{\frac{\sigma^2}n} = \sigma\sqrt{\frac{1}n}\)</p>
+
+</article></slide><slide class=""><hgroup><h2>Testowanie średnich</h2></hgroup><article  id="testowanie-średnich">
+
+<p>statystyka testowa \(z\): \(z = \frac{\bar{X} - \mu}{s_e}\)</p>
+
+<p>Przedział ufności dla średniej: \((\bar{X} - z \cdot s_e) &lt; \mu &lt;(\bar{X} + z \cdot s_e)\)</p>
+
 </article></slide><slide class=""><hgroup><h2>Kowariancja i korelacja</h2></hgroup><article  id="kowariancja-i-korelacja">
 
 <p>Kowariancja</p>
@@ -3236,11 +3262,9 @@ P(r; n, p) = \binom{n}{r}p^r(1-p)^{n-r}
 
 <p>gdzie</p>
 
-<p>\(SP_{jk} = \sum_{i=1}^{n}(x_ij-\bar{X_j})(x_ik-\bar{X_k})\)</p>
+<p>\(SP_{jk} = \sum_{i=1}^{n}(x_{ij}-\bar{X_j})(x_{ik}-\bar{X_k})\)</p>
 
-<p>Korelacja</p>
-
-<p>\(r_{jk} = \frac{cov_{jk}}{s_{j}s_{k}}\)</p></article></slide>
+<p>Korelacja Pearson’a: \(r_{jk} = \frac{cov_{jk}}{s_{j}s_{k}}\)<br/>Korelacja Spearman’a: \(r&#39; = \frac{6\sum_{i=1}^{n}[R(x_i) - R(y_i)]^2}{n(n^2-1)}\)<br/>Gdzie \(R\) wskazuje na rangę</p></article></slide>
 
 
   <slide class="backdrop"></slide>
