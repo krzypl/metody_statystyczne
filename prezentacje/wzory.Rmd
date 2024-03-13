@@ -116,11 +116,16 @@ Czyli, ze średnia ze średnich w próbach jest równa średniej populacji
 
 Błąd standardowy: \(s_e = \sqrt{\frac{\sigma^2}n} = \sigma\sqrt{\frac{1}n}\)
 
-## Testowanie średnich
+## z test
 
 statystyka testowa \(z\): \(z = \frac{\bar{X} - \mu}{s_e}\)
 
 Przedział ufności dla średniej: \((\bar{X} - z \cdot s_e) < \mu <(\bar{X} + z \cdot s_e)\)
+
+## t test
+
+statystyka testowa \(t\): \(t = \frac{\bar{X} - \mu_{0}}{s_e}\)  
+Różnica pomiedzy testami z i t jest taka, ze \(s_e\) w tym pierwszym jest obliczane w oparciu o \(\sigma\), a w przypadku testu t, w oparciu o \(s\). Poza tym w z teście mamy znaną średnią (\(\mu\)), a w t teście jest ona jedynie zakladana (\(\mu_{0}\))
 
 ## Kowariancja i korelacja
 
@@ -135,5 +140,4 @@ gdzie
 Korelacja Pearson'a: \(r_{jk} = \frac{cov_{jk}}{s_{j}s_{k}}\)   
 Korelacja Spearman'a: \(r' = \frac{6\sum_{i=1}^{n}[R(x_i) - R(y_i)]^2}{n(n^2-1)}\)  
 Gdzie \(R\) wskazuje na rangę
-
 

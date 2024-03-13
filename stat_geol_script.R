@@ -191,7 +191,7 @@ composita <- tibble(dl = c(18.4, 16.9, 13.6, 11.4, 7.8, 6.3),
 # 1. bład I rodzaju (alfa) - odrzucenie właściwej hipotezy
 # 2. Błąd II rodzaju (beta) - przyjęcie niewłaściwej hipoterzy
 #prawdopodobieństwo popelnienia bledu I rodzaju w statystyce nazywa sie "poziomem istotności", ktory dla kazdego testu musi być ustalony
-#odrzucamy hipoteze, jesli wartosc bedzie za duza albo za mala (two-tailed test), tj. jesli znajdziemy sie w zasiegu tzw. critical region
+#W tym przykladzie odrzucamy hipoteze, jesli wartosc bedzie za duza albo za mala (two-tailed test), tj. jesli znajdziemy sie w zasiegu tzw. critical region. 
 
 #Zadanie: korzystajac z wzoru oblicz statystyke z dla podanych powyżej danych
 
@@ -214,7 +214,7 @@ library(BSDA)
 
 z.test(x = c(19, 20, 21, 18, 22, 20), alternative = "two.sided", mu = 14.2, sigma.x = 4.7)
 
-#z-test wykonuje się, kiedy parametry populacji są znane. Często tak nie jest dlatego opracowuje się alternatywne testy
+#z-test wykonuje się, kiedy parametry populacji są znane. Często tak nie jest dlatego opracowuje się alternatywne testy. Jednak kiedy liczba obserwacji w probie wynosi powyzej 30, to mozna niekiedy przyjac, ze parametry rozkladu obliczone na podstawie takiej proby sa na tyle dobrym przyblizeniem, ze i tak stosuje sie z test, a nie alternatywy.  
 
 #w takich przypadkach obliczamy parametry populacji w oparciu o probe statstyczna, co zawsze prowadzi do podawania nie dokladnych wartosci, a przedzialow
 
@@ -225,4 +225,25 @@ qnorm(x, mean = 0, sd = 1) #pod x podstaw odpowiednie wartosci prawdopodobienstw
 test <- z.test(composita$dl, alternative = "two.sided", sigma.x = 4.7,  conf.level = 0.9)
 ci <- tibble(lower = test$conf.int[[1]], upper = test$conf.int[[2]])
 
+#rozklad t - podobny do rozkladu normalnego, ale jego dokladny ksztalt zalezy od liczby obserwacji w probie. 
+#uwaga na stopnie swobody (oznaczanie grecką literą nu) - testy bazujace na probach statystycznych musza uwzglednic to, ze parametry statystyczne populacji musza byc oszacowane w oparciu o dane z prob statystycznych. Ma swoje konsekwencje. Np.:
+#obliczamy średnia w oparciu o 5 obserwacji:
+x1 <- 3
+x2 <- 2
+x3 <- 8
+x4 <- 9
+x5 <- 4
 
+X <- mean(c(x1, x2, x3, x4, x5))
+
+#Jesli pozniej chcemy wykorzystac obliczona wartosc sredniej to musimy miec swiadomosc ograniczonej swobody. Np.
+
+5*X - (x1 + x2 + x3 + x4) #musi się równać 4, czyli do obliczenia np. odchylenia standardowego będziemy mieli jedynie 4 niezależne obserwacje (n-1). Jesli jakis test wymaga obliczenia wiekszej liczby paramterow, to kazdy bedzie "kosztowal" jeden stopien swobody.
+
+#Zadanie: wykorzystujac test t zweryfikuj hipoteze, ze rdzenie, dla ktorych zostala pomierzona porowatosc (dane ponizej) pochodzi z populacji, w ktorej średnia porowatosc wynosi więcej niż 18%. Obliczenia przeprowadz "na piechotę". Wykorzystaj kod z testu z podstawiając pod funkcję qnorm() funkcję qt(). W atrybutach funkcji określ odopowiednia wartość dla stopni swobody (df). Sprawdz uzyskany wynik wykorzystujac funkcje t.test(). (podpowiedż: tym razem mamy do czynienia z one-tailed testem)
+
+porowatosc <- c(13, 17, 15, 23, 27, 29, 18, 27, 20, 24)
+
+#Zadanie: wykorzystujac wzor dla rozkladu t oblicz srednią w 95% przedziale ufoności dla obiektu porowatosc. Wynik sprawdz z wykorzystaniem poniższego kodu:
+test_t <- t.test(porowatosc, alternative = "two.sided", conf.level = 0.95)
+ci <- tibble(lower = test_t$conf.int[[1]], upper = test_t$conf.int[[2]])
