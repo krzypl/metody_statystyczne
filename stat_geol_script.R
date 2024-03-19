@@ -202,8 +202,6 @@ alpha <- .05
 z.half.alpha <- qnorm(1-alpha/2) 
 c(-z.half.alpha, z.half.alpha) 
 
-
-
 #mozemy tez obliczyc wartosc p, tj. minimalna wartosc przy ktorej hipoteza zerowa bylaby odrzucona
 
 2*(1 - pnorm(z, mean = 0, sd = 1)) # mnozym przez dwa poniewaz pnorm() liczy nam p tylko dla jednej strony rozkladu, a my przeprowadzamy two-tailed test
@@ -226,7 +224,7 @@ test <- z.test(composita$dl, alternative = "two.sided", sigma.x = 4.7,  conf.lev
 ci <- tibble(lower = test$conf.int[[1]], upper = test$conf.int[[2]])
 
 #rozklad t - podobny do rozkladu normalnego, ale jego dokladny ksztalt zalezy od liczby obserwacji w probie. 
-#uwaga na stopnie swobody (oznaczanie grecką literą nu) - testy bazujace na probach statystycznych musza uwzglednic to, ze parametry statystyczne populacji musza byc oszacowane w oparciu o dane z prob statystycznych. Ma swoje konsekwencje. Np.:
+#uwaga na stopnie swobody (oznaczanie grecką literą nu) - testy bazujace na probach statystycznych musza uwzglednic to, ze parametry statystyczne populacji musza byc oszacowane w oparciu o dane z prob statystycznych. Ma to swoje konsekwencje. Np.:
 #obliczamy średnia w oparciu o 5 obserwacji:
 x1 <- 3
 x2 <- 2
@@ -245,5 +243,33 @@ X <- mean(c(x1, x2, x3, x4, x5))
 porowatosc <- c(13, 17, 15, 23, 27, 29, 18, 27, 20, 24)
 
 #Zadanie: wykorzystujac wzor dla rozkladu t oblicz srednią w 95% przedziale ufoności dla obiektu porowatosc. Wynik sprawdz z wykorzystaniem poniższego kodu:
-test_t <- t.test(porowatosc, alternative = "two.sided", conf.level = 0.95)
+
+test_t <- t.test(porowatosc, alternative = "two.sided", conf.level = 0.95, mu = 18)
 ci <- tibble(lower = test_t$conf.int[[1]], upper = test_t$conf.int[[2]])
+
+#testowanie srednich dwoch prob. Test zaklada jednakowosc wariancji, losowosc prob i rozklad normalny porownywanych zbiorow.
+
+porowatosc2 <- c(15, 10, 15, 23, 18, 26, 24, 18, 19, 21)
+
+#zadanie : wykorzystujac wzor na wartosc testowa t do porownywania srednich z prob statystycznych sprawdz, czy obserwacje z obiektu porowatosc i porowatosc2 pochodza z tych samych populacji. Wynik sprawdz wykorzystujac funkcje t.test()
+ 
+#test t na korelacje zaklada rozklad normalny zmiennych i ze  obserwacje byly pozyskane losowo z populacji
+
+#zadanie: sprawdz czy korelacja pomiędzy osią a i b w poniższym zbiorze zawierajacym dane z pomiarow najdluzszych (a) i najkrotszych (b) osi glazikow jest istotna statystycznie wykorzystujac wzor na test t do testowania korelacji. Wyszukaj przy pomocy ChataGPT/wszukiwarki odpowiednia funkcję do wykonania tego testu w R.
+
+glaziki <- tibble(a = c(8, 16, 12, 13, 16, 14, 16, 11, 15, 13),
+                  b = c(7, 8, 10, 12, 14, 9, 13, 6, 9, 10))
+
+#Rozklad F - od nazwyska Sir Ronalda Fisher'a. Rozklad teoretyczny spodziewany przy losowaniu z populacji i obliczaniu dla wszystkich par prob statystycznych stosunku wariancji. Wsztstkie wartosci w rozkladzie sa pozytywne, srednia dla rozkladu wynosi 1.
+# test F na testowanie wariancji - wieksza wartosc wariancji zawsze mamy w liczniku. Wtedy wartosc testowa F jest zawsze > 1 i mozemy przeprowadzać test, który jest one-tailed.
+
+#Zadanie: kozystając z wzoru na test F na jednakowosc wariancji sprawdz czy pomiary porowatosci dla 2 zbiorow wczesniej wykorzystanych do testowania srednich maja jednakowa wariancje. 
+
+#analiza wariancji (ANOVA): poprzednie metody skupialy sie na porownaniu dwoch prob albo proby z populacja. ANOVA pozwala na porownanie wiecej niz dwoch prob. Najbardziej ogolnie - metody ANOVA obejmuja rozklad calkowitej wariancji w zestawie prob na rozne skladowe. Testy na jednakowosc uwzgledniaja jednoczesnie roznice w srendich i wariancjach. Analiza ANOVA zaklada losowosc prob, normalnosc rozkladu populacji macierzystych i jednakowosc wariancji. Do testowania hipotez wykorzystujemy statystyke F.
+
+#w jednoczynnikowej analizie wariancji (one-way ANOVA) całkowita wariancja jest rozbijana na 2 komponenty: wariancja w obrebie pojedynczych prob i wariancja pomiedzy probami. Potrzebne wzory 
+
+
+#Zadanie:
+oneova <- read.delim("dane/ONEOVA.txt") %>% 
+  rename(caco3 = 'CaCO3..')

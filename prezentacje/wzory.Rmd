@@ -108,11 +108,11 @@ Kurtoza: \[ \kappa = \frac{\mu_4}{\sigma^4} \]
 
 ## Cetralne twierdzenie graniczne
 
-\(\bar{X}_{\bar{X}} = \mu)\)
+\(\bar{X}_{\bar{X}} = \mu\)
 
 Czyli, ze średnia ze średnich w próbach jest równa średniej populacji
 
-\(s^2_{\bar{X}} = \frac{\sigma^2}n)\)
+\(s^2_{\bar{X}} = \frac{\sigma^2}n\)
 
 Błąd standardowy: \(s_e = \sqrt{\frac{\sigma^2}n} = \sigma\sqrt{\frac{1}n}\)
 
@@ -125,7 +125,18 @@ Przedział ufności dla średniej: \((\bar{X} - z \cdot s_e) < \mu <(\bar{X} + z
 ## t test
 
 statystyka testowa \(t\): \(t = \frac{\bar{X} - \mu_{0}}{s_e}\)  
-Różnica pomiedzy testami z i t jest taka, ze \(s_e\) w tym pierwszym jest obliczane w oparciu o \(\sigma\), a w przypadku testu t, w oparciu o \(s\). Poza tym w z teście mamy znaną średnią (\(\mu\)), a w t teście jest ona jedynie zakladana (\(\mu_{0}\))
+Różnica pomiedzy testami z i t jest taka, ze \(s_e\) w tym pierwszym jest obliczane w oparciu o \(\sigma\), a w przypadku testu t, w oparciu o \(s\). Poza tym w z teście mamy znaną średnią (\(\mu\)), a w t teście jest ona jedynie zakladana (\(\mu_{0}\))  
+
+Przedział ufności dla średniej: \((\bar{X} - t_{\alpha/2,n-1} \cdot s_e) < \mu <(\bar{X} + t_{\alpha/2,n-1} \cdot s_e)\)
+
+## t test do porównywania srednich w próbach
+
+\(t\): \(t = \frac{\bar{X_1} - \bar{X_2}}{s_e}\)  
+
+tutaj \(s_e = s_p\sqrt{\frac{1}{n_1} + \frac{1}{n_2}}\)
+
+gdzie \(s_p = \frac{(n_1 - 1)s^2_1 + (n_2 - 1)s^2_2}{n_1 + n_2 - 2}\)
+
 
 ## Kowariancja i korelacja
 
@@ -140,4 +151,21 @@ gdzie
 Korelacja Pearson'a: \(r_{jk} = \frac{cov_{jk}}{s_{j}s_{k}}\)   
 Korelacja Spearman'a: \(r' = \frac{6\sum_{i=1}^{n}[R(x_i) - R(y_i)]^2}{n(n^2-1)}\)  
 Gdzie \(R\) wskazuje na rangę
+
+## test t na testowanie korelacji
+
+\(t = \frac{r\sqrt{n - 2}}{\sqrt{1-r^2}}\)
+
+## analiza wariancji (ANOVA)
+
+\(F-test = \frac{MS_A}{MS_E}\)
+
+wariancja pomiędzy próbami = \(MS_A = \frac{SS_A}{N - m}\)
+wariancja w obrebie probek (error variance) = \(MS_E = \frac{SS_E}{N - m}\)
+
+\(SS_A = \sum_{j=1}^{m}(\bar{X}_j-\overline{\overline{X}})^2\)
+
+\(SS_E = SS_T - SS_A\)
+
+\(SS_T = \sum_{j=1}^{m}\sum_{i=1}^{n}(x_{ij} - \overline{\overline{X}})^2\)
 

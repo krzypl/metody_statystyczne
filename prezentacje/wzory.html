@@ -3240,19 +3240,33 @@ P(r; n, p) = \binom{n}{r}p^r(1-p)^{n-r}
 
 </article></slide><slide class=""><hgroup><h2>Cetralne twierdzenie graniczne</h2></hgroup><article  id="cetralne-twierdzenie-graniczne">
 
-<p>\(\bar{X}_{\bar{X}} = \mu)\)</p>
+<p>\(\bar{X}_{\bar{X}} = \mu\)</p>
 
 <p>Czyli, ze średnia ze średnich w próbach jest równa średniej populacji</p>
 
-<p>\(s^2_{\bar{X}} = \frac{\sigma^2}n)\)</p>
+<p>\(s^2_{\bar{X}} = \frac{\sigma^2}n\)</p>
 
 <p>Błąd standardowy: \(s_e = \sqrt{\frac{\sigma^2}n} = \sigma\sqrt{\frac{1}n}\)</p>
 
-</article></slide><slide class=""><hgroup><h2>Testowanie średnich</h2></hgroup><article  id="testowanie-średnich">
+</article></slide><slide class=""><hgroup><h2>z test</h2></hgroup><article  id="z-test">
 
 <p>statystyka testowa \(z\): \(z = \frac{\bar{X} - \mu}{s_e}\)</p>
 
 <p>Przedział ufności dla średniej: \((\bar{X} - z \cdot s_e) &lt; \mu &lt;(\bar{X} + z \cdot s_e)\)</p>
+
+</article></slide><slide class=""><hgroup><h2>t test</h2></hgroup><article  id="t-test">
+
+<p>statystyka testowa \(t\): \(t = \frac{\bar{X} - \mu_{0}}{s_e}\)<br/>Różnica pomiedzy testami z i t jest taka, ze \(s_e\) w tym pierwszym jest obliczane w oparciu o \(\sigma\), a w przypadku testu t, w oparciu o \(s\). Poza tym w z teście mamy znaną średnią (\(\mu\)), a w t teście jest ona jedynie zakladana (\(\mu_{0}\))</p>
+
+<p>Przedział ufności dla średniej: \((\bar{X} - t_{\alpha/2,n-1} \cdot s_e) &lt; \mu &lt;(\bar{X} + t_{\alpha/2,n-1} \cdot s_e)\)</p>
+
+</article></slide><slide class=""><hgroup><h2>t test do porównywania srednich w próbach</h2></hgroup><article  id="t-test-do-porównywania-srednich-w-próbach">
+
+<p>\(t\): \(t = \frac{\bar{X_1} - \bar{X_2}}{s_e}\)</p>
+
+<p>tutaj \(s_e = s_p\sqrt{\frac{1}{n_1} + \frac{1}{n_2}}\)</p>
+
+<p>gdzie \(s_p = \frac{(n_1 - 1)s^2_1 + (n_2 - 1)s^2_2}{n_1 + n_2 - 2}\)</p>
 
 </article></slide><slide class=""><hgroup><h2>Kowariancja i korelacja</h2></hgroup><article  id="kowariancja-i-korelacja">
 
@@ -3264,7 +3278,19 @@ P(r; n, p) = \binom{n}{r}p^r(1-p)^{n-r}
 
 <p>\(SP_{jk} = \sum_{i=1}^{n}(x_{ij}-\bar{X_j})(x_{ik}-\bar{X_k})\)</p>
 
-<p>Korelacja Pearson’a: \(r_{jk} = \frac{cov_{jk}}{s_{j}s_{k}}\)<br/>Korelacja Spearman’a: \(r&#39; = \frac{6\sum_{i=1}^{n}[R(x_i) - R(y_i)]^2}{n(n^2-1)}\)<br/>Gdzie \(R\) wskazuje na rangę</p></article></slide>
+<p>Korelacja Pearson’a: \(r_{jk} = \frac{cov_{jk}}{s_{j}s_{k}}\)<br/>Korelacja Spearman’a: \(r&#39; = \frac{6\sum_{i=1}^{n}[R(x_i) - R(y_i)]^2}{n(n^2-1)}\)<br/>Gdzie \(R\) wskazuje na rangę</p>
+
+</article></slide><slide class=""><hgroup><h2>test t na testowanie korelacji</h2></hgroup><article  id="test-t-na-testowanie-korelacji">
+
+<p>\(t = \frac{r\sqrt{n - 2}}{\sqrt{1-r^2}}\)</p>
+
+</article></slide><slide class=""><hgroup><h2>analiza wariancji (ANOVA)</h2></hgroup><article  id="analiza-wariancji-anova">
+
+<p>\(F-test = \frac{MS_A}{MS_E}\)</p>
+
+<p>\(wariancja pomiędzy próbami = MS_A = \frac{SS_A}{N - m}\) \(wariancja w obrebie probek (&quot;error variance&quot;) = MS_E = \frac{SS_E}{N - m}\)</p>
+
+<p>\(SS_A = \sum_{j=1}^{m}(\bar{X_j}-\overline{\overline{X})^2\)</p></article></slide>
 
 
   <slide class="backdrop"></slide>
