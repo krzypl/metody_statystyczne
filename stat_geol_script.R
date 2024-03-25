@@ -267,9 +267,13 @@ glaziki <- tibble(a = c(8, 16, 12, 13, 16, 14, 16, 11, 15, 13),
 
 #analiza wariancji (ANOVA): poprzednie metody skupialy sie na porownaniu dwoch prob albo proby z populacja. ANOVA pozwala na porownanie wiecej niz dwoch prob. Najbardziej ogolnie - metody ANOVA obejmuja rozklad calkowitej wariancji w zestawie prob na rozne skladowe. Testy na jednakowosc uwzgledniaja jednoczesnie roznice w srendich i wariancjach. Analiza ANOVA zaklada losowosc prob, normalnosc rozkladu populacji macierzystych i jednakowosc wariancji. Do testowania hipotez wykorzystujemy statystyke F.
 
-#w jednoczynnikowej analizie wariancji (one-way ANOVA) całkowita wariancja jest rozbijana na 2 komponenty: wariancja w obrebie pojedynczych prob i wariancja pomiedzy probami. Potrzebne wzory 
+#w jednoczynnikowej analizie wariancji (one-way ANOVA) całkowita wariancja jest rozbijana na 2 komponenty: wariancja w obrebie pojedynczych prob i wariancja pomiedzy probami. Potrzebne wzory znajduja sie w prezentacji 
 
+#Zadanie: ponizej przeprowadzona zostala jednoczynnikowa analiza wariancji (wlasciwy plik nalezy pobrac ze strony i skopiowac go do folderu "dane", ktory powinien znajdowac sie w folderze projektowym). Na podstawie wyniku stiwerdz, czy ktorakolwiek probka rozni sie od pozostalych pod wzgledem sredniej. Nastepnie przeprowadz wlasciwe obliczenia, zeby uzyskać wartości "Sum Sq" (odpowiadaja one odpowiednio SSA i SSE ze wzoru w prezentacji), wartosci "Mean Sq" (odpowiednio MSA i MSE w prezentacji) oraz wartosc F.
 
-#Zadanie:
 oneova <- read.delim("dane/ONEOVA.txt") %>% 
-  rename(caco3 = 'CaCO3..')
+  rename(caco3 = 'CaCO3..') %>% 
+  mutate(Sample = factor(Sample))
+
+caco3_anova <- aov(caco3 ~ Sample, data = oneova)
+summary(caco3_anova)

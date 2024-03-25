@@ -149,7 +149,7 @@ gdzie
 \(SP_{jk} = \sum_{i=1}^{n}(x_{ij}-\bar{X_j})(x_{ik}-\bar{X_k})\)
 
 Korelacja Pearson'a: \(r_{jk} = \frac{cov_{jk}}{s_{j}s_{k}}\)   
-Korelacja Spearman'a: \(r' = \frac{6\sum_{i=1}^{n}[R(x_i) - R(y_i)]^2}{n(n^2-1)}\)  
+Korelacja Spearman'a: \(r' = 1 - \frac{6\sum_{i=1}^{n}[R(x_i) - R(y_i)]^2}{n(n^2-1)}\)  
 Gdzie \(R\) wskazuje na rangę
 
 ## test t na testowanie korelacji
@@ -160,7 +160,7 @@ Gdzie \(R\) wskazuje na rangę
 
 \(F-test = \frac{MS_A}{MS_E}\)
 
-wariancja pomiędzy próbami = \(MS_A = \frac{SS_A}{N - m}\)
+wariancja pomiędzy próbami = \(MS_A = \frac{SS_A}{N - m}\)  
 wariancja w obrebie probek (error variance) = \(MS_E = \frac{SS_E}{N - m}\)
 
 \(SS_A = \sum_{j=1}^{m}(\bar{X}_j-\overline{\overline{X}})^2\)
@@ -168,4 +168,34 @@ wariancja w obrebie probek (error variance) = \(MS_E = \frac{SS_E}{N - m}\)
 \(SS_E = SS_T - SS_A\)
 
 \(SS_T = \sum_{j=1}^{m}\sum_{i=1}^{n}(x_{ij} - \overline{\overline{X}})^2\)
+
+## Regresja liniowa metodą najmniejszych kwadratów
+
+\(Y_i = \beta_0 + \beta_1X_i + \epsilon_i\) 
+
+\(Y_i\) - wartość zmiennej zależnej  
+\(X_i\) - wartość zmiennej niezależnej  
+\(\beta_0\) - wyraz wolny (ang. intercept)  
+\(\beta_1\) - współczynnik kierunkowy (ang. slope)  
+\(\epsilon_i\) - człon błędu
+
+\(\widehat{Y}_i = \beta_0 + \beta_1X_i\)  
+\(\widehat{Y}_i\) - wartość przewidywana
+
+## Estymacja Współczynnika kierunkowego i wyrazu wolnego
+
+\(\beta_1 = \frac{cov_{xy}}{var_x}\)  
+
+\(\beta_0 = \bar{Y} - \beta_1\bar{X}\)
+
+## Współczynnik determinacji
+
+Przy jednej zmiennej niezależnej:
+\(R^2 = (r_{xy})^2\)  
+\(R^2\) - współczynnik determinacji  
+\(r_{xy}\) - współczynnik korelacji między zmiennymi x i y
+
+
+
+
 

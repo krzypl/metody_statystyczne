@@ -3288,9 +3288,31 @@ P(r; n, p) = \binom{n}{r}p^r(1-p)^{n-r}
 
 <p>\(F-test = \frac{MS_A}{MS_E}\)</p>
 
-<p>\(wariancja pomiędzy próbami = MS_A = \frac{SS_A}{N - m}\) \(wariancja w obrebie probek (&quot;error variance&quot;) = MS_E = \frac{SS_E}{N - m}\)</p>
+<p>wariancja pomiędzy próbami = \(MS_A = \frac{SS_A}{N - m}\)<br/>wariancja w obrebie probek (error variance) = \(MS_E = \frac{SS_E}{N - m}\)</p>
 
-<p>\(SS_A = \sum_{j=1}^{m}(\bar{X_j}-\overline{\overline{X})^2\)</p></article></slide>
+<p>\(SS_A = \sum_{j=1}^{m}(\bar{X}_j-\overline{\overline{X}})^2\)</p>
+
+<p>\(SS_E = SS_T - SS_A\)</p>
+
+<p>\(SS_T = \sum_{j=1}^{m}\sum_{i=1}^{n}(x_{ij} - \overline{\overline{X}})^2\)</p>
+
+</article></slide><slide class=""><hgroup><h2>Regresja liniowa metodą najmniejszych kwadratów</h2></hgroup><article  id="regresja-liniowa-metodą-najmniejszych-kwadratów">
+
+<p>\(Y_i = \beta_0 + \beta_1X_i + \epsilon_i\)</p>
+
+<p>\(Y_i\) - wartość zmiennej zależnej<br/>\(X_i\) - wartość zmiennej niezależnej<br/>\(\beta_0\) - wyraz wolny (ang. intercept)<br/>\(\beta_1\) - współczynnik kierunkowy (ang. slope)<br/>\(\epsilon_i\) - człon błędu</p>
+
+<p>\(\widehat{Y}_i = \beta_0 + \beta_1X_i\)<br/>\(\widehat{Y}_i\) - wartość przewidywana</p>
+
+</article></slide><slide class=""><hgroup><h2>Estymacja Współczynnika kierunkowego i wyrazu wolnego</h2></hgroup><article  id="estymacja-współczynnika-kierunkowego-i-wyrazu-wolnego">
+
+<p>\(\beta_1 = \frac{cov_{xy}}{var_x}\)</p>
+
+<p>\(\beta_0 = \bar{Y} - \beta_1\bar{X}\)</p>
+
+</article></slide><slide class=""><hgroup><h2>Współczynnik determinacji</h2></hgroup><article  id="współczynnik-determinacji">
+
+<p>Przy jednej zmiennej niezależnej: \(R^2 = (r_{xy})^2\)<br/>\(R^2\) - współczynnik determinacji<br/>\(r_{xy}\) - współczynnik korelacji między zmiennymi x i y</p></article></slide>
 
 
   <slide class="backdrop"></slide>
