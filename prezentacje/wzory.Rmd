@@ -135,7 +135,7 @@ Przedział ufności dla średniej: \((\bar{X} - t_{\alpha/2,n-1} \cdot s_e) < \m
 
 tutaj \(s_e = s_p\sqrt{\frac{1}{n_1} + \frac{1}{n_2}}\)
 
-gdzie \(s_p = \frac{(n_1 - 1)s^2_1 + (n_2 - 1)s^2_2}{n_1 + n_2 - 2}\)
+gdzie \(s_p^2 = \frac{(n_1 - 1)s^2_1 + (n_2 - 1)s^2_2}{n_1 + n_2 - 2}\)
 
 
 ## Kowariancja i korelacja
