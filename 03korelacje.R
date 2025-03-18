@@ -13,6 +13,3 @@ ggplot(correl, aes(x = X1, y = X2)) +
 #Zadanie" korzystając z kodu powyżej utwórz wykres pokazujący relację pomiędzy 4 wybranymi zmiennymi. Oblicz dla wszystkich sytuacji współczynnik korelacji
 
 #Uwaga ogolna - obliczanie korelacji z danych kompozycyjnych wymaga szczególnego podejścia
-
-composita <- tibble(dl = c(18.4, 16.9, 13.6, 11.4, 7.8, 6.3),
-                    szer = c(15.4, 15.1, 10.9, 9.7, 7.4, 5.3))
