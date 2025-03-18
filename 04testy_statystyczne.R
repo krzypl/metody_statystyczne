@@ -25,9 +25,9 @@ ggplot(data.frame(x = c(-3, 3)), aes(x)) +
 
 #Dzieki centralnemu twierdzeniu granicznemu możem przeprowadzać testy statystyczne dla populacji, ktore wcale nie maja rozkladu normalnego
 
-#załóżmy, że znamy dokładnie własności populacji Composita, że średnia długość wynosi 14.2 mm a odchylenie standardowe 4.7 mm. Znalezlismy próbkę ze skamieniałościami ramienionogów, które wygladają jak Composita, ale są wyjatkowo duże - sredio maja po 20 mm. Czy moga one pochodzic ze znanej populacji Composita
+#załóżmy, że znamy dokładnie własności populacji Composita, że średnia długość wynosi 14.2 mm a odchylenie standardowe 4.7 mm. Znalezlismy próbkę ze skamieniałościami sześciu ramienionogów, które wygladają jak Composita, ale są wyjatkowo duże - sredio maja po 20 mm. Czy moga one pochodzic ze znanej populacji Composita
 
-#wykorzystanie statystyki z posiadajaca rozklad normalny, srednią zero i odchylenie standardowe 1. 
+#wykorzystanie statystyki "z" posiadajaca rozklad normalny, srednią zero i odchylenie standardowe 1. 
 #hipoteza zerowa (H0) zaklada, ze porownywane srednie nie roznia się.
 
 #ddwa rodzaje błedów:
@@ -36,7 +36,7 @@ ggplot(data.frame(x = c(-3, 3)), aes(x)) +
 #prawdopodobieństwo popelnienia bledu I rodzaju w statystyce nazywa sie "poziomem istotności", ktory dla kazdego testu musi być ustalony
 #W tym przykladzie odrzucamy hipoteze, jesli wartosc bedzie za duza albo za mala (two-tailed test), tj. jesli znajdziemy sie w zasiegu tzw. critical region. 
 
-#Zadanie: korzystajac z wzoru oblicz statystyke z dla podanych powyżej danych
+#Zadanie: korzystajac z wzoru oblicz statystyke "z" dla podanych powyżej danych
 
 
 #wykorzystując obliczoną wartość z możemy określić czy znajduje sie ona w critical region czy nie
