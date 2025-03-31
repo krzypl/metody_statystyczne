@@ -63,7 +63,7 @@ composita <- tibble(dl = c(18.4, 16.9, 13.6, 11.4, 7.8, 6.3),
                     szer = c(15.4, 15.1, 10.9, 9.7, 7.4, 5.3))
 
 #zadanie: korzystajac z wzoru oblicz srednia dlugosc populacji Composita w przedziale ufnosci 90% w oparciu o dane z proby statystycznej. Dla obliczenia wartosci z skorzystaj z poniższego wzoru:
-qnorm(x, mean = 0, sd = 1) #pod x podstaw odpowiednie wartosci prawdopodobienstwa
+qnorm(0.95, mean = 0, sd = 1) #pod x podstaw odpowiednie wartosci prawdopodobienstwa
 
 #wynik sprawdx w oparciu o wykorzystanie funkcji z.test z poniższymi parametrami
 test <- z.test(composita$dl, alternative = "two.sided", sigma.x = 4.7,  conf.level = 0.9)
