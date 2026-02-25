@@ -1,7 +1,7 @@
 ---
 title: "Prezezentacja wstęp"
 author: "Krzysztof Pleskot"
-date: "2025-03-05"
+date: "2025-02-25"
 output: ioslides_presentation
 ---
 
@@ -17,10 +17,10 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ## Organizacja zajęć
 
-- zajęcia trwają do 2 kwietnia 
+- zajęcia trwają do 25 marca 
 - wykład i laboratorja odbywają się równolegle
-- zaliczenie części laboratorjnej: zdanie kompletu wykonanych zadań do dnia 9 kwietnia
-- zaliczenie części wykładowej: rozmowa w oparciu o wykonane zadania; temin: 16 kwietnia
+- zaliczenie części laboratorjnej: zdanie kompletu wykonanych zadań do dnia 1 kwietnia
+- zaliczenie części wykładowej: rozmowa w oparciu o wykonane zadania; temin: ? kwietnia
 
 ## Literatura
 
@@ -39,7 +39,7 @@ Statystyka (niem. Statistik, „badanie faktów i osób publicznych”, z łac. 
 
 ##
 
-- "...when you can measure what you are speaking about and express it in numbers, you know something about it; but when you can't express it in numbers, your knowledge is of a meagre and unsatisfactory kind; it ma be the beginning of knowledge..." - Lord Kelvin
+- "...when you can measure what you are speaking about and express it in numbers, you know something about it; but when you can't express it in numbers, your knowledge is of a meagre and unsatisfactory kind; it may be the beginning of knowledge..." - Lord Kelvin
 
 Ale:
 
