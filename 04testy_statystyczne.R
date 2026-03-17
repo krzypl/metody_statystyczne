@@ -4,12 +4,12 @@ normal_density <- function(x) {
 }
 
 #wykres dla rozk;adu normalnego z zaznaczonymi kolejnymi wartościami dla odchlenia standardowego
-ggplot(data.frame(x = c(-3, 3)), aes(x)) +
+rozklad_normalny <- ggplot(data.frame(x = c(-3, 3)), aes(x)) +
   stat_function(fun = normal_density, geom = "area", fill = "lightblue", alpha = 0.5, xlim = c(-3, 3)) +
   stat_function(fun = normal_density, geom = "line", size = 1) +
-  geom_vline(xintercept = c(-1, 1), linetype = "dashed", color = "red", size = 1.2) +
-  geom_vline(xintercept = c(-2, 2), linetype = "dashed", color = "orange", size = 1.2) +
-  geom_vline(xintercept = c(-3, 3), linetype = "dashed", color = "darkgreen", size = 1.2) +
+  geom_vline(xintercept = c(-1, 1), linetype = "dashed", color = "red", linewidth = 1.2) +
+  geom_vline(xintercept = c(-2, 2), linetype = "dashed", color = "orange", linewidth = 1.2) +
+  geom_vline(xintercept = c(-3, 3), linetype = "dashed", color = "darkgreen", linewidth = 1.2) +
   geom_vline(xintercept = 0) +
   labs(title = "Rozkład normalny z zaznaczonymi zakresami 1 i 2 sigma",
        x = "X-axis",
@@ -43,9 +43,14 @@ ggplot(data.frame(x = c(-3, 3)), aes(x)) +
 
 alpha <- .05 
 z.half.alpha <- qnorm(1-alpha/2) 
-c(-z.half.alpha, z.half.alpha) 
+z.alphas <- c(-z.half.alpha, z.half.alpha) 
+
+rozklad_normalny +
+  geom_vline(xintercept = z.alphas, color = "magenta", linewidth = 3)
 
 #mozemy tez obliczyc wartosc p, tj. minimalna wartosc przy ktorej hipoteza zerowa bylaby odrzucona
+
+z <- #tu powinno pojawic sie obliczenie z
 
 2*(1 - pnorm(z, mean = 0, sd = 1)) # mnozym przez dwa poniewaz pnorm() liczy nam p tylko dla jednej strony rozkladu, a my przeprowadzamy two-tailed test
 
@@ -57,13 +62,13 @@ z.test(x = c(19, 20, 21, 18, 22, 20), alternative = "two.sided", mu = 14.2, sigm
 
 #z-test wykonuje się, kiedy parametry populacji są znane. Często tak nie jest dlatego opracowuje się alternatywne testy. Jednak kiedy liczba obserwacji w probie wynosi powyzej 30, to mozna niekiedy przyjac, ze parametry rozkladu obliczone na podstawie takiej proby sa na tyle dobrym przyblizeniem, ze i tak stosuje sie z test, a nie alternatywy.  
 
-#w takich przypadkach obliczamy parametry populacji w oparciu o probe statstyczna, co zawsze prowadzi do podawania nie dokladnych wartosci, a przedzialow
+#zadanie: wymyśl przypadek, spoza dziedziny paleontologii, w którym znajdzie zastosowanie test z. W opisie uwzględnij dane, które wykorzystasz do przeprowadzenia testu. Zastosuj funkcję z.test() z paczki BSDA
 
 composita <- tibble(dl = c(18.4, 16.9, 13.6, 11.4, 7.8, 6.3),
                     szer = c(15.4, 15.1, 10.9, 9.7, 7.4, 5.3))
 
-#zadanie: korzystajac z wzoru oblicz srednia dlugosc populacji Composita w przedziale ufnosci 90% w oparciu o dane z proby statystycznej. Dla obliczenia wartosci z skorzystaj z poniższego wzoru:
-qnorm(0.95, mean = 0, sd = 1) #pod x podstaw odpowiednie wartosci prawdopodobienstwa
+#zadanie: korzystajac z wzoru oblicz srednia dlugosc populacji Composita w przedziale ufnosci 90% w oparciu o dane z proby statystycznej (dane znajduja sie w obiekcie composita). Dla obliczenia wartosci z skorzystaj z poniższego wzoru:
+qnorm(x, mean = 0, sd = 1) #pod x podstaw odpowiednie wartosci prawdopodobienstwa
 
 #wynik sprawdx w oparciu o wykorzystanie funkcji z.test z poniższymi parametrami
 test <- z.test(composita$dl, alternative = "two.sided", sigma.x = 4.7,  conf.level = 0.9)

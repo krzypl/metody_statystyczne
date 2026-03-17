@@ -156,11 +156,18 @@ Gdzie \(R\) wskazuje na rangę
 
 \(t = \frac{r\sqrt{n - 2}}{\sqrt{1-r^2}}\)
 
+## test F na testowanie wariancji
+
+$$
+F = \frac{s_1^2}{s_2^2}
+$$
+gdzie $s_1^2$ to wariancja pierwszej próby, a $s_2^2$ to wariancja drugiej próby  
+
 ## analiza wariancji (ANOVA)
 
 \(F-test = \frac{MS_A}{MS_E}\)
 
-wariancja pomiędzy próbami = \(MS_A = \frac{SS_A}{N - m}\)  
+wariancja pomiędzy próbami = \(MS_A = \frac{SS_A}{m - 1}\)  
 wariancja w obrebie probek (error variance) = \(MS_E = \frac{SS_E}{N - m}\)
 
 \(SS_A = \sum_{j=1}^{m}(\bar{X}_j-\overline{\overline{X}})^2\)
@@ -168,6 +175,8 @@ wariancja w obrebie probek (error variance) = \(MS_E = \frac{SS_E}{N - m}\)
 \(SS_E = SS_T - SS_A\)
 
 \(SS_T = \sum_{j=1}^{m}\sum_{i=1}^{n}(x_{ij} - \overline{\overline{X}})^2\)
+
+gdzie $N$ to całkowita liczba obserwacji, $m$ to liczba grup, a $\overline{\overline{X}}$ to średnia ze średnich
 
 ## Regresja liniowa metodą najmniejszych kwadratów
 

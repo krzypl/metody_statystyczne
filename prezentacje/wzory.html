@@ -3287,17 +3287,25 @@ P(r; n, p) = \binom{n}{r}p^r(1-p)^{n-r}
 
 <p>\(t = \frac{r\sqrt{n - 2}}{\sqrt{1-r^2}}\)</p>
 
+</article></slide><slide class=""><hgroup><h2>test F na testowanie wariancji</h2></hgroup><article  id="test-f-na-testowanie-wariancji">
+
+<p>\[
+F = \frac{s_1^2}{s_2^2}
+\] gdzie \(s_1^2\) to wariancja pierwszej próby, a \(s_2^2\) to wariancja drugiej próby</p>
+
 </article></slide><slide class=""><hgroup><h2>analiza wariancji (ANOVA)</h2></hgroup><article  id="analiza-wariancji-anova">
 
 <p>\(F-test = \frac{MS_A}{MS_E}\)</p>
 
-<p>wariancja pomiędzy próbami = \(MS_A = \frac{SS_A}{N - m}\)<br/>wariancja w obrebie probek (error variance) = \(MS_E = \frac{SS_E}{N - m}\)</p>
+<p>wariancja pomiędzy próbami = \(MS_A = \frac{SS_A}{m - 1}\)<br/>wariancja w obrebie probek (error variance) = \(MS_E = \frac{SS_E}{N - m}\)</p>
 
 <p>\(SS_A = \sum_{j=1}^{m}(\bar{X}_j-\overline{\overline{X}})^2\)</p>
 
 <p>\(SS_E = SS_T - SS_A\)</p>
 
 <p>\(SS_T = \sum_{j=1}^{m}\sum_{i=1}^{n}(x_{ij} - \overline{\overline{X}})^2\)</p>
+
+<p>gdzie \(N\) to całkowita liczba obserwacji, \(m\) to liczba grup, a \(\overline{\overline{X}}\) to średnia ze średnich</p>
 
 </article></slide><slide class=""><hgroup><h2>Regresja liniowa metodą najmniejszych kwadratów</h2></hgroup><article  id="regresja-liniowa-metodą-najmniejszych-kwadratów">
 
