@@ -75,6 +75,13 @@ test <- z.test(composita$dl, alternative = "two.sided", sigma.x = 4.7,  conf.lev
 ci <- tibble(lower = test$conf.int[[1]], upper = test$conf.int[[2]])
 
 #rozklad t - podobny do rozkladu normalnego, ale jego dokladny ksztalt zalezy od liczby obserwacji w probie. 
+
+rozklad_t <- ggplot(tibble(x = c(-4, 4)), aes(x)) +
+  geom_function(fun = function(x) dt(x, df = 2), color = "red")+
+  geom_function(fun = function(x) dt(x, df = 5), color = "green")+
+  geom_function(fun = function(x) dt(x, df = 20), color = "blue")+
+  geom_function(fun = function(x) dnorm(x), color = "magenta")
+
 #uwaga na stopnie swobody (oznaczanie grecką literą nu) - testy bazujace na probach statystycznych musza uwzglednic to, ze parametry statystyczne populacji musza byc oszacowane w oparciu o dane z prob statystycznych. Ma to swoje konsekwencje. Np.:
 #obliczamy średnia w oparciu o 5 obserwacji:
 x1 <- 3
@@ -112,9 +119,17 @@ glaziki <- tibble(a = c(8, 16, 12, 13, 16, 14, 16, 11, 15, 13),
                   b = c(7, 8, 10, 12, 14, 9, 13, 6, 9, 10))
 
 #Rozklad F - od nazwyska Sir Ronalda Fisher'a. Rozklad teoretyczny spodziewany przy losowaniu z populacji i obliczaniu dla wszystkich par prob statystycznych stosunku wariancji. Wsztstkie wartosci w rozkladzie sa pozytywne, srednia dla rozkladu wynosi 1.
-# test F na testowanie wariancji - wieksza wartosc wariancji zawsze mamy w liczniku. Wtedy wartosc testowa F jest zawsze > 1 i mozemy przeprowadzać test, który jest one-tailed.
 
-#Zadanie: kozystając z wzoru na test F na jednakowosc wariancji sprawdz czy pomiary porowatosci dla 2 zbiorow wczesniej wykorzystanych do testowania srednich maja jednakowa wariancje. 
+rozklad_f <- ggplot(tibble(x = c(-0.5, 5)), aes(x)) +
+  geom_function(fun = function(x) df(x, df1 = 3, df2 = 3), color = "red") +
+  geom_vline()
+  geom_function(fun = function(x) df(x, df1 = 10, df2 = 10), color = "green") +
+  geom_function(fun = function(x) df(x, df1 = 30, df2 = 30), color = "blue") +
+  geom_function(fun = function(x) df(x, df1 = 100, df2 = 100), color = "black")
+
+# test F na testowanie wariancji - jesli wieksza wartosc wariancji mamy w liczniku, to wartosc testowa F jest zawsze > 1 i mozemy przeprowadzać test, który jest one-tailed.
+
+#Zadanie: kozystając z wzoru na wartosc testową F oraz funkcji pf() sprawdz czy pomiary porowatosci dla 2 zbiorow wczesniej wykorzystanych do testowania srednich maja jednakowa wariancje. Zastosuj zasadę, że większa wartość wariancji jest w liczniku i przeprowadź test jednostronny. Przyjmij wartość krytyczną na poziomie 0.1. 
 
 #analiza wariancji (ANOVA): poprzednie metody skupialy sie na porownaniu dwoch prob albo proby z populacja. ANOVA pozwala na porownanie wiecej niz dwoch prob. Najbardziej ogolnie - metody ANOVA obejmuja rozklad calkowitej wariancji w zestawie prob na rozne skladowe. Testy na jednakowosc uwzgledniaja jednoczesnie roznice w srendich i wariancjach. Analiza ANOVA zaklada losowosc prob, normalnosc rozkladu populacji macierzystych i jednakowosc wariancji. Do testowania hipotez wykorzystujemy statystyke F.
 
@@ -128,3 +143,5 @@ oneova <- read.delim("dane/ONEOVA.txt") %>%
 
 caco3_anova <- aov(caco3 ~ Sample, data = oneova)
 summary(caco3_anova)
+
+#zadanie: korzystając z danych dla pomiarow XRF, z których korzystaliśmy wcześniej, po wybraniu dowolnego pierwiastka, określ czy istnieje istotna różnica pomiedzy pomiarem probek suchych i probek mokrych. Nastpnie, dla tego samego pierwiastka, sprawdz, czy istnieje istotna roznica dla pomiarow z wykorzystaniem duzego i malego okna pomiarowego.
