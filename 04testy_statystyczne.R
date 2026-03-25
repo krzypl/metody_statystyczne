@@ -145,3 +145,6 @@ caco3_anova <- aov(caco3 ~ Sample, data = oneova)
 summary(caco3_anova)
 
 #zadanie: korzystając z danych dla pomiarow XRF, z których korzystaliśmy wcześniej, po wybraniu dowolnego pierwiastka, określ czy istnieje istotna różnica pomiedzy pomiarem probek suchych i probek mokrych. Nastpnie, dla tego samego pierwiastka, sprawdz, czy istnieje istotna roznica dla pomiarow z wykorzystaniem duzego i malego okna pomiarowego.
+
+xrf_long <- read_rds("https://raw.githubusercontent.com/krzypl/ms_xrf_standards/main/data/xrf_long.rds") %>%
+  filter(element == "Fe")
