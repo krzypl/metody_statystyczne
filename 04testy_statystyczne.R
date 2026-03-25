@@ -148,3 +148,13 @@ summary(caco3_anova)
 
 xrf_long <- read_rds("https://raw.githubusercontent.com/krzypl/ms_xrf_standards/main/data/xrf_long.rds") %>%
   filter(element == "Fe")
+  
+dry_samples_fe <- xrf_long %>% 
+  filter(treatment == "dry") %>% 
+  filter(!is.na(concentration)) %>% 
+  pull(concentration)
+
+wet_sample_fe <- xrf_long %>% 
+  filter(treatment == "wet") %>% 
+  filter(!is.na(concentration)) %>% 
+  pull(concentration)
